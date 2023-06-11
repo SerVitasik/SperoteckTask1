@@ -1,38 +1,86 @@
-.App {
-  text-align: center;
+.message {
+  border: 3px solid #000;
+  max-width: 500px;
+  margin: 50px auto 10px;
+  padding: 25px;
+  font-size: 20px;
+  position: relative;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.message:hover::after {
+  content: "";
+  background-color: #000;
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  width: 20px;
+  height: 2px;
+  transform: rotate(-45deg);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.message:hover::before {
+  content: "";
+  background-color: #000;
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  width: 20px;
+  height: 2px;
+  transform: rotate(45deg);
+}
+.messages__list {
+  border: 3px solid #000;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 25px;
+
+  margin-bottom: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.messages__list li {
+  position: relative;
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+.deleted::before {
+  content: "";
+  background-color: #000;
+  position: absolute;
+  top: 10px;
+  left: -20px;
+  width: 20px;
+  height: 2px;
+  transform: rotate(45deg);
+}
+
+.deleted::after {
+  content: "";
+  background-color: #000;
+  position: absolute;
+  top: 10px;
+  left: -20px;
+  width: 20px;
+  height: 2px;
+  transform: rotate(-45deg);
+}
+
+.messages__form {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-.App-link {
-  color: #61dafb;
+.messages__form input {
+  border: 3px solid #000;
+  width: 400px;
+  padding: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.messages__form button {
+  border: 3px solid #000;
+  text-align: center;
+  padding: 10px 20px;
 }

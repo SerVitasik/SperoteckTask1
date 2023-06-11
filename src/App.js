@@ -1,25 +1,65 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useRef, useEffect } from 'react';
+import Message from './components/Message';
+const App = () => {
+  const [messages, setMessages] = useState([
+    {
+      message: 'Message 1',
+      isDeleted: false,
+      id: 1
+    },
+    {
+      message: 'Message 2',
+      isDeleted: false,
+      id: 2
+    },
+    {
+      message: 'Message 3',
+      isDeleted: false,
+      id: 3
+    },
+    {
+      message: 'Message 4',
+      isDeleted: false,
+      id: 4
+    },
+  ]);
 
-function App() {
+  const [isDeleted, setIsDeleted] = useState(false);
+
+  const inputRef = useRef();
+
+  const onSend = (e) => {
+    e.preventDefault();
+    const enteredMessage = inputRef.current.value;
+
+    setMessages([...messages, { message: enteredMessage, isDeleted: false, id: Math.random() }]);
+  };
+
+  const deleteHandler = (deletedMessageId) => {
+    setMessages(prevMessages =>
+      prevMessages.map(message => {
+        if (message.id === deletedMessageId) {
+          return { ...message, isDeleted: true };
+        }
+        return message;
+      })
+    );
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Message deletedMessage={deleteHandler} messages={messages} />
+      <ul className='messages__list'>
+        {messages.map(item => <li className={(item.isDeleted === true) ? 'deleted' : ''} key={item.id}>{item.message}</li>)}
+      </ul>
+      <form className='messages__form' onSubmit={onSend}>
+        <input ref={inputRef} type="text" />
+        <button type="submit">Send</button>
+      </form>
+      {/* <AddMessage /> */}
     </div>
   );
-}
+};
 
 export default App;
