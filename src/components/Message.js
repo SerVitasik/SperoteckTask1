@@ -12,7 +12,18 @@ const Message = (props) => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            setCurrentIndex(prevIndex => (prevIndex < props.messages.length - 1 && props.messages[prevIndex + 1].isDeleted === false) ? prevIndex + 1 : prevIndex = 0);
+            for (let i = currentIndex + 1; i < props.messages.length; i++) {
+                if (!props.messages[i].isDeleted) {
+                    setCurrentIndex(i);
+                    return;
+                }
+            }
+            for (let i = 0; i < currentIndex; i++) {
+                if (!props.messages[i].isDeleted) {
+                    setCurrentIndex(i);
+                    return;
+                }
+            }
         }, 1000);
         return () => clearTimeout(timer);
     }, [currentIndex, props.messages.length]);

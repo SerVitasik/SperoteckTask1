@@ -25,7 +25,6 @@ const App = () => {
     },
   ]);
 
-  const [isDeleted, setIsDeleted] = useState(false);
 
   const inputRef = useRef();
 
