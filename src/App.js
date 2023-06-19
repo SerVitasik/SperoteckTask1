@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import Message from './components/Message';
 const App = () => {
   const [messages, setMessages] = useState([
@@ -56,7 +56,6 @@ const App = () => {
         <input ref={inputRef} type="text" />
         <button type="submit">Send</button>
       </form>
-      {/* <AddMessage /> */}
     </div>
   );
 };

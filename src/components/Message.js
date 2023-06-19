@@ -18,15 +18,17 @@ const Message = (props) => {
                     return;
                 }
             }
+
             for (let i = 0; i < currentIndex; i++) {
                 if (!props.messages[i].isDeleted) {
                     setCurrentIndex(i);
                     return;
                 }
             }
+
         }, 1000);
         return () => clearTimeout(timer);
-    }, [currentIndex, props.messages.length]);
+    }, [currentIndex, props.messages.length, props.messages]);
 
     const currentMessage = props.messages[currentIndex].message;
 
